@@ -1,4 +1,3 @@
-
 /*********************************
 *                                *
 *      Дата: 09.12.2021г.        *
@@ -13,7 +12,7 @@
 
 using namespace std;
 
-int from_symbols_to_numbers(char sign) {
+int convertation(char sign) {
     if (sign == 'I') {
         return 1;
     } else if (sign == 'V') {
@@ -33,36 +32,35 @@ int from_symbols_to_numbers(char sign) {
     }
 }
 
-void inArab(string number)
-{
-    int symbol_1, symbol_2;
+void inArab(string number) {
+    int symbolOne, symbolTwo;
     int counter = 1;
     int sum = 0;
 
-    symbol_1 = from_symbols_to_numbers(number[0]);
+    symbolOne = convertation(number[0]);
 
     if (number.length() == 1) {
-        sum = symbol_1;
+        sum = symbolOne;
     } else {
         do {
-            if (symbol_1 == 0) {
-                symbol_1 = from_symbols_to_numbers(number[counter]);
+            if (symbolOne == 0) {
+                symbolOne = convertation(number[counter]);
             } else {
-                symbol_2 = from_symbols_to_numbers(number[counter]);
-                if (symbol_1 < symbol_2) {
-                    sum += symbol_2 - symbol_1;
-                    symbol_1 = 0;
+                symbolTwo = convertation(number[counter]);
+                if (symbolOne < symbolTwo) {
+                    sum += symbolTwo - symbolOne;
+                    symbolOne = 0;
                 } else {
-                    sum += symbol_1;
-                    symbol_1 = symbol_2;
+                    sum += symbolOne;
+                    symbolOne = symbolTwo;
                 }                
-                symbol_2 = 0;
+                symbolTwo = 0;
             }
             ++counter;
         } while (counter < number.length());
         counter = 1;
-        if (symbol_2 == 0) {
-            sum += symbol_1;
+        if (symbolTwo == 0) {
+            sum += symbolOne;
         }
     }
 
